@@ -10,3 +10,8 @@ trio.run -> [async function] -> ... -> [async function] -> trio.whaterver
 
 async 函数被包含在 trio.run 和 trio.whatever 中。
 
+## 第二个示例
+
+在 trio 中我们通过 nursery 来启动多个子 async 函数，最终还是由 trio.run 来启动作为 parent 的 async 函数。
+
+这里值得注意的是 nursery 是通过异步上下文管理器来创建的，异步上下文管理器和上下文管理器的区别在于其 __enter__ 和 __exit__ 方法变成了异步的 __aenter__ 和 __aexit__，保证了 parent 也是 async 函数。
